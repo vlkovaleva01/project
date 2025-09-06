@@ -1,0 +1,6 @@
+<script>start("/Users/vladakovaleva/Desktop/homework/project/homework3/");</script>
+<script>onHasParentDirectory();</script>
+<script>addRow(".DS_Store",".DS_Store",0,6148,"6.0 kB",1757180990,"06.09.2025, 19:49:50");</script>
+<script>addRow("image1.jpg","image1.jpg",0,23412,"22.9 kB",1757180242,"06.09.2025, 19:37:22");</script>
+<script>addRow("intex.html","intex.html",0,1239,"1.2 kB",1757183786,"06.09.2025, 20:36:26");</script>
+<script>addRow("reset.css","reset.css",0,418,"418 B",1757150629,"06.09.2025, 11:23:49");</script>
