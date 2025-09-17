@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <body>
+   
+      <div class="navigation-bar">
+        <h1 class="active">All Plants</h1>
+        <h1>New Arrivals</h1>
+        <h1>Sale</h1>
+      </div>
+
+      <div class="header-container">
+       
+        <div>
+          <div class="Categories">
+            <h1 class="Categories1">Categories</h1>
+            <h2 class="category-item1">House Plants</h2>
+            <h2 class="category-item">Potter Plants</h2>
+            <h2 class="category-item">Seeds</h2>
+            <h2 class="category-item">Small Plants</h2>
+            <h2 class="category-item">Big Plants</h2>
+            <h2 class="category-item">Succulents</h2>
+            <h2 class="category-item">Terrariums</h2>
+            <h2 class="category-item">Gardening</h2>
+            <h2 class="category-item">Accessories</h2>
+          </div>
+
+          <div class="header-middle">
+            <img
+              src="Super Sale Banner.png"
+              alt="Super Sale"
+              class="header-middle-img"
+            />
+          </div>
+        </div>
+
+        <div class="container">
+          <div class="card"><img src="Card Product.png" alt="Plant 1" /></div>
+          <div class="card"><img src="Card Product-2.png" alt="Plant 2" /></div>
+          <div class="card"><img src="Card Product — 3.png" alt="Plant 3" /></div>
+          <div class="card"><img src="Card Product — 4.png" alt="Plant 4" /></div>
+          <div class="card"><img src="Card Product-5 — копия.png" alt="Plant 5" /></div>
+          <div class="card"><img src="Card Product-6.png" alt="Plant 6" /></div>
+          <div class="card"><img src="Card Product-7.png" alt="Plant 7" /></div>
+          <div class="card"><img src="Card Product-8.png" alt="Plant 8" /></div>
+          <div class="card"><img src="Card Product-9.png" alt="Plant 9" /></div>
+        </div>
+      </div>
+    </body>
+    <style>
+      body {
+        font-family: "Poppins", Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #fff;
+        color: #3d3d3d;
+      }
+
+
+      .navigation-bar {
+        max-width: 1200px;
+        margin: 20px auto;
+        padding: 0 20px;
+      }
+
+      .navigation-bar h1 {
+        display: inline-block;
+        margin-right: 30px;
+        font-size: 18px;
+        font-weight: 500;
+        cursor: pointer;
+      }
+
+      .navigation-bar .active {
+        color: #46a358;
+        font-weight: 600;
+      }
+
+
+      .header-container {
+        display: grid;
+        grid-template-columns: 250px 1fr; 
+        gap: 30px;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px 40px;
+      }
+
+   
+      .Categories {
+        background: #fbfbfb;
+        padding: 20px;
+        border-radius: 8px;
+      }
+
+      .Categories1 {
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 20px;
+      }
+
+      .category-item,
+      .category-item1 {
+        font-size: 15px;
+        font-weight: 500;
+        margin: 8px 0;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .category-item1 {
+        color: #46a358;
+        font-weight: 600;
+      }
+
+      .category-item:hover {
+        color: #46a358;
+      }
+
+      .header-middle {
+        margin-top: 40px;
+        text-align: center;
+      }
+
+      .header-middle-img {
+        width: 100%;
+        max-width: 220px;
+        border-radius: 10px;
+      }
+
+   
+      .container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+
+      .card {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 10px;
+        text-align: center;
+        background: #fff;
+        transition: 0.3s;
+      }
+
+      .card:hover {
+        border-color: #46a358;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .card img {
+        width: 100%;
+        max-width: 250px;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+      }
+
+      @media (max-width: 900px) {
+        .header-container {
+          grid-template-columns: 1fr;
+        }
+        .container {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 600px) {
+        .container {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
