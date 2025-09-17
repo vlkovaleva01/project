@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Plant Shop</title>
+    <link rel="stylesheet" href="styles/style.css" />
+  </head>
+  <body>
+    <section class="plants">
+      <div class="plant">
+        <img src="image 14.jpg"Cactus">
+        <h3>Summer Cactus & Succulents</h3>
+        <p>
+          We are an online plant shop offering a wide range of cheap and trendy
+          plants.
+        </p>
+        <a href="#">Find Now</a>
+      </div>
+
+      <div class="plant">
+        <img src="image 15.jpg" alt="Trends" />
+        <h3>Styling Trends & Much More</h3>
+        <p>
+          We are an online plant shop offering a wide range of cheap and trendy
+          plants.
+        </p>
+        <a href="#">Find Now</a>
+      </div>
+    </section>
+
+    <section class="blog">
+      <h2>Our Blog Posts</h2>
+      <p class="subtitle">
+        We are an online plant shop offering a wide range of cheap and trendy
+        plants.
+      </p>
+
+      <div class="blog-list">
+        <article class="post">
+          <img src="01.jpg" alt="Blog 1" />
+          <h3>Cactus & Succulent Care Tips</h3>
+          <p>September 12 | Read in 4 minutes</p>
+        </article>
+
+        <article class="post">
+          <img src="02.jpg" alt="Blog 2" />
+          <h3>Top 10 Succulents For Your Home</h3>
+          <p>September 13 | Read in 2 minutes</p>
+        </article>
+
+        <article class="post">
+          <img src="03.jpg" alt="Blog 3" />
+          <h3>Cacti & Succulent Care Tips</h3>
+          <p>September 15 | Read in 3 minutes</p>
+        </article>
+
+        <article class="post">
+          <img src="04.jpg" alt="Blog 4" />
+          <h3>Best Houseplants Room By Room</h3>
+          <p>September 18 | Read in 2 minutes</p>
+        </article>
+      </div>
+    </section>
+  </body>
+</html>
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+  }
+
+  .header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+    background: #f5f5f5;
+    text-align: center;
+  }
+
+  .plants {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 40px;
+  }
+
+  .plant {
+    flex: 1;
+    text-align: center;
+    background: #fafafa;
+    padding: 20px;
+    border-radius: 8px;
+  }
+
+  .plant img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .plant a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 15px;
+    background: green;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+  }
+
+  .blog {
+    padding: 40px;
+    background: #f9f9f9;
+    text-align: center;
+  }
+
+  .blog-list {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+
+  .post {
+    flex: 1 1 calc(25% - 20px);
+    background: #fff;
+    border-radius: 8px;
+    padding: 15px;
+    box-sizing: border-box;
+    text-align: center;
+  }
+
+  .post img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+
+  @media (max-width: 900px) {
+    .plants {
+      flex-direction: column;
+    }
+    .blog-list {
+      flex-direction: column;
+    }
+    .post {
+      flex: 1 1 100%;
+    }
+  }
+</style>
