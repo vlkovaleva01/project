@@ -4,1223 +4,904 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GreenShop</title>
+    <style>
+      :root {
+        --green: #46a358;
+        --green-dark: #3b8d4e;
+        --text: #3d3d3d;
+        --muted: #777;
+        --bg: #ffffff;
+        --card-border: #e7e7e7;
+        --max-width: 1200px;
+        --radius: 8px;
+        --gap: 20px;
+        font-size: 16px;
+        font-family: "Poppins", Arial, sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html,
+      body {
+        height: 100%;
+        background: #f9f9f9;
+        color: var(--text);
+        -webkit-font-smoothing: antialiased;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .site {
+        max-width: calc(var(--max-width) + 40px);
+        margin: 0 auto;
+        padding: 20px;
+        background: transparent;
+      }
+
+      header.header {
+        max-width: var(--max-width);
+        margin: 0 auto 30px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 12px 0;
+      }
+
+      .logo img {
+        height: 44px;
+        display: block;
+      }
+
+      nav nav {
+      }
+      .nav-list {
+        list-style: none;
+        display: flex;
+        gap: 34px;
+        align-items: center;
+      }
+      .nav-list a {
+        font-weight: 500;
+        color: var(--text);
+        transition: color 0.2s, border-bottom 0.2s;
+        padding: 6px 0;
+      }
+      .nav-list a:hover {
+        color: var(--green);
+        border-bottom: 2px solid var(--green);
+      }
+
+      .login-btn {
+        background: var(--green);
+        color: #fff;
+        border: none;
+        padding: 10px 22px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: 600;
+      }
+      .login-btn:hover {
+        background: var(--green-dark);
+        transform: scale(1.03);
+      }
+
+      .hero {
+        max-width: var(--max-width);
+        margin: 0 auto 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 40px;
+        padding: 10px 0;
+        background: transparent;
+      }
+      .hero-text {
+        max-width: 52%;
+      }
+      .hero-text .subtitle {
+        color: #555;
+        margin-bottom: 8px;
+        font-size: 0.95rem;
+      }
+      .hero-text h1 {
+        font-size: 2.2rem;
+        line-height: 1.15;
+        margin-bottom: 14px;
+      }
+      .hero-text h1 span {
+        color: var(--green);
+      }
+      .hero-text .description {
+        color: #666;
+        line-height: 1.6;
+        margin-bottom: 20px;
+      }
+      .shop-btn {
+        background: var(--green);
+        color: #fff;
+        padding: 12px 26px;
+        border-radius: 6px;
+        border: none;
+        cursor: pointer;
+        font-weight: 600;
+      }
+      .shop-btn:hover {
+        background: var(--green-dark);
+      }
+
+      .hero-image img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 10px;
+      }
+
+      .navigation-bar {
+        max-width: var(--max-width);
+        margin: 20px auto;
+        padding: 8px 0;
+        display: flex;
+        gap: 28px;
+        align-items: center;
+      }
+      .navigation-bar h2 {
+        font-size: 1.05rem;
+        font-weight: 600;
+        color: var(--muted);
+        margin: 0;
+        cursor: pointer;
+      }
+      .navigation-bar h2.active {
+        color: var(--green);
+      }
+
+      main.products-page {
+        max-width: var(--max-width);
+        margin: 20px auto 40px;
+      }
+      .layout {
+        display: grid;
+        grid-template-columns: 250px 1fr;
+        gap: calc(var(--gap) * 1.2);
+        align-items: start;
+      }
+
+      aside.sidebar {
+        background: var(--bg);
+        border-radius: var(--radius);
+        padding: 18px;
+        border: 1px solid var(--card-border);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.03);
+      }
+
+      .sidebar-block {
+        margin-bottom: 22px;
+      }
+      .sidebar-block h3 {
+        color: #2c742f;
+        font-size: 1rem;
+        margin-bottom: 12px;
+        font-weight: 700;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 8px;
+      }
+
+      .category-list,
+      .size-list {
+        list-style: none;
+        padding: 6px 0 0 0;
+      }
+      .category-list li,
+      .size-list li {
+        margin-bottom: 10px;
+      }
+      .filter-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        font-size: 0.95rem;
+        color: var(--text);
+      }
+      .filter-left {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .filter-left input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        accent-color: var(--green);
+        cursor: pointer;
+        transform: scale(1.02);
+      }
+      .filter-count {
+        color: var(--muted);
+        font-size: 0.86rem;
+      }
+
+      .price-range input[type="range"] {
+        width: 100%;
+        margin: 8px 0;
+        accent-color: var(--green);
+      }
+      .price-values {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 6px;
+        font-size: 0.95rem;
+      }
+      .filter-btn {
+        background: var(--green);
+        color: #fff;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: 600;
+      }
+      .filter-btn:hover {
+        background: var(--green-dark);
+      }
+
+      .sidebar-sale {
+        position: relative;
+        border-radius: 8px;
+        overflow: hidden;
+        margin-top: 6px;
+      }
+      .sidebar-sale img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+      .sidebar-sale .sale-text {
+        position: absolute;
+        left: 50%;
+        top: 24%;
+        transform: translateX(-50%);
+        color: #fff;
+        text-align: center;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+      }
+      .sidebar-sale h4 {
+        font-size: 1.2rem;
+        margin-bottom: 6px;
+      }
+      .sidebar-sale p {
+        font-weight: 700;
+        letter-spacing: 0.6px;
+      }
+
+      .products-wrap {
+        background: transparent;
+        padding: 0;
+      }
+      .products {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+        align-items: start;
+      }
+      .card {
+        background: var(--bg);
+        border-radius: 10px;
+        border: 1px solid var(--card-border);
+        padding: 12px;
+        text-align: center;
+        transition: transform 0.18s ease, box-shadow 0.18s ease;
+      }
+      .card img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 6px;
+      }
+      .card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+      }
+
+      .promo {
+        margin-top: 38px;
+        padding: 36px;
+        background: linear-gradient(
+          135deg,
+          #46a358 0%,
+          #5fc96a 60%,
+          #79db82 100%
+        );
+        color: #fff;
+        border-radius: 10px;
+      }
+      .promo-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+        max-width: var(--max-width);
+        margin: 0 auto;
+      }
+      .promo-card {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        background: #fff;
+        color: #222;
+        padding: 18px;
+        border-radius: 10px;
+      }
+      .promo-card img {
+        width: 160px;
+        height: auto;
+        border-radius: 8px;
+      }
+      .promo-text h3 {
+        font-size: 1rem;
+        color: #0d5727;
+        margin-bottom: 8px;
+      }
+      .promo-text p {
+        font-size: 0.95rem;
+        color: #555;
+        margin-bottom: 10px;
+      }
+      .btn {
+        background: #52b788;
+        color: #fff;
+        padding: 9px 14px;
+        border-radius: 6px;
+        font-weight: 600;
+      }
+
+      .blog {
+        margin-top: 36px;
+        padding: 30px 0;
+        background: transparent;
+      }
+      .blog h2 {
+        font-size: 1.4rem;
+        color: #2c742f;
+        margin-bottom: 8px;
+      }
+      .blog .subtitle {
+        color: #666;
+        margin-bottom: 20px;
+      }
+      .blog-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        margin-top: 10px;
+      }
+      .blog-card {
+        background: #fff;
+        border-radius: 8px;
+        border: 1px solid var(--card-border);
+        overflow: hidden;
+      }
+      .blog-card img {
+        width: 100%;
+        height: 160px;
+        object-fit: cover;
+        display: block;
+      }
+      .blog-info {
+        padding: 14px;
+        text-align: left;
+      }
+      .blog-info .meta {
+        color: #79b482;
+        font-size: 0.85rem;
+        display: block;
+        margin-bottom: 6px;
+      }
+      .blog-info h4 {
+        color: #0d5727;
+        margin-bottom: 8px;
+        font-size: 1rem;
+      }
+      .readmore {
+        color: var(--green);
+        font-weight: 600;
+      }
+
+      footer.footer {
+        margin-top: 40px;
+        background: #fbfbfb;
+        color: #333;
+        padding: 36px 0 10px;
+        border-top: 1px solid #eee;
+      }
+      .footer-top {
+        display: flex;
+        gap: 22px;
+        max-width: var(--max-width);
+        margin: 0 auto 18px;
+        padding: 0 10px;
+        justify-content: space-between;
+      }
+      .footer-card {
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+        flex: 1 1 280px;
+      }
+      .footer-card img {
+        width: 70px;
+        height: 70px;
+        object-fit: cover;
+        border-radius: 8px;
+      }
+      .footer-card h4 {
+        color: #2c742f;
+        margin-bottom: 6px;
+      }
+      .footer-middle {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        padding: 18px 10px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        align-items: start;
+      }
+      .footer-col h5 {
+        color: #2c742f;
+        margin-bottom: 10px;
+      }
+      .footer-col a {
+        display: block;
+        color: #555;
+        margin-bottom: 6px;
+      }
+      .socials {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+      .socials img {
+        width: 26px;
+        height: 26px;
+        display: block;
+      }
+
+      .footer-bottom {
+        max-width: var(--max-width);
+        margin: 14px auto;
+        padding: 12px;
+        text-align: center;
+        color: #888;
+        font-size: 0.95rem;
+      }
+
+      .muted {
+        color: var(--muted);
+      }
+      .sr-only {
+        position: absolute;
+        left: -10000px;
+        top: auto;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+      }
+    </style>
   </head>
-
   <body>
-    <header class="header">
-      <div class="logo">
-        <img src="Logo.jpg" alt="GreenShop Logo" />
-      </div>
-      <nav>
-        <ul class="nav-list">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Shop</a></li>
-          <li><a href="#">Plant Care</a></li>
-          <li><a href="#">Blogs</a></li>
-        </ul>
-      </nav>
-      <button class="login-btn">Login</button>
-    </header>
+    <div class="site">
+      <header class="header" role="banner">
+        <div class="logo">
+          <img src="Logo.jpg" alt="GreenShop Logo" />
+        </div>
 
-    <section class="hero">
-      <div class="hero-text">
-        <p class="subtitle">Welcome to GreenShop</p>
-        <h1>Let’s Make a Better <span>Planet</span></h1>
-        <p class="description">
-          We offer a wide variety of indoor and outdoor plants to help you
-          create a fresh and relaxing environment at home.
-        </p>
-        <button class="shop-btn">Shop Now</button>
-      </div>
-      <div class="hero-image">
-        <img src="Group 3 (1).png" alt="Green plants" width="500" />
-      </div>
-    </section>
+        <nav aria-label="Main navigation">
+          <ul class="nav-list">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Shop</a></li>
+            <li><a href="#">Plant Care</a></li>
+            <li><a href="#">Blogs</a></li>
+          </ul>
+        </nav>
 
-    <div class="navigation-bar">
-      <h1 class="active">All Plants</h1>
-      <h1>New Arrivals</h1>
-      <h1>Sale</h1>
-    </div>
+        <div>
+          <button class="login-btn" type="button">Login</button>
+        </div>
+      </header>
 
-    <section class="products-page">
-      <div class="container">
-        <aside class="sidebar">
-          <div class="sidebar-block">
-            <h3>Categories</h3>
-            <ul class="category-list">
-              <li><a href="#">House Plants <span>(33)</span></a></li>
-              <li><a href="#">Potter Plants <span>(12)</span></a></li>
-              <li><a href="#">Seeds <span>(65)</span></a></li>
-              <li><a href="#">Small Plants <span>(39)</span></a></li>
-              <li><a href="#">Big Plants <span>(23)</span></a></li>
-              <li><a href="#">Succulents <span>(17)</span></a></li>
-              <li><a href="#">Terrariums <span>(19)</span></a></li>
-              <li><a href="#">Gardening <span>(13)</span></a></li>
-              <li><a href="#">Accessories <span>(18)</span></a></li>
-            </ul>
-          </div>
-    
-          <div class="sidebar-block">
-            <h3>Price Range</h3>
-            <div class="price-range">
-              <input type="range" min="0" max="1500" value="300">
-              <div class="price-values">
-                <span>Price: $39 – $1230</span>
-                <button class="filter-btn">Filter</button>
+      <section class="hero" aria-labelledby="hero-heading">
+        <div class="hero-text">
+          <p class="subtitle">Welcome to GreenShop</p>
+          <h1 id="hero-heading">Let’s Make a Better <span>Planet</span></h1>
+          <p class="description">
+            We offer a wide variety of indoor and outdoor plants to help you
+            create a fresh and relaxing environment at home.
+          </p>
+          <button class="shop-btn" type="button">Shop Now</button>
+        </div>
+
+        <div class="hero-image" aria-hidden="false">
+          <img src="Group 3 (1).png" alt="Green plants" />
+        </div>
+      </section>
+
+      <div
+        class="navigation-bar"
+        role="navigation"
+        aria-label="Product categories"
+      >
+        <h2 class="active">All Plants</h2>
+        <h2>New Arrivals</h2>
+        <h2>Sale</h2>
+      </div>
+
+      <main class="products-page" role="main">
+        <div class="layout">
+          <aside class="sidebar" aria-labelledby="filters-heading">
+            <h3 id="filters-heading" class="sr-only">Filters</h3>
+
+            <div class="sidebar-block">
+              <h3>Categories</h3>
+              <ul class="category-list" aria-label="Product categories">
+                <li>
+                  <div class="filter-item">
+                    <div class="filter-left">
+                      <input id="cat-house" type="checkbox" />
+                      <label for="cat-house">House Plants</label>
+                    </div>
+                    <div class="filter-count">(33)</div>
+                  </div>
+                </li>
+
+                <li>
+                  <div class="filter-item">
+                    <div class="filter-left">
+                      <input id="cat-potter" type="checkbox" />
+                      <label for="cat-potter">Potter Plants</label>
+                    </div>
+                    <div class="filter-count">(12)</div>
+                  </div>
+                </li>
+
+                <li>
+                  <div class="filter-item">
+                    <div class="filter-left">
+                      <input id="cat-seeds" type="checkbox" />
+                      <label for="cat-seeds">Seeds</label>
+                    </div>
+                    <div class="filter-count">(65)</div>
+                  </div>
+                </li>
+
+                <li>
+                  <div class="filter-item">
+                    <div class="filter-left">
+                      <input id="cat-small" type="checkbox" />
+                      <label for="cat-small">Small Plants</label>
+                    </div>
+                    <div class="filter-count">(39)</div>
+                  </div>
+                </li>
+
+                <li>
+                  <div class="filter-item">
+                    <div class="filter-left">
+                      <input id="cat-big" type="checkbox" />
+                      <label for="cat-big">Big Plants</label>
+                    </div>
+                    <div class="filter-count">(23)</div>
+                  </div>
+                </li>
+
+                <li>
+                  <div class="filter-item">
+                    <div class="filter-left">
+                      <input id="cat-succ" type="checkbox" />
+                      <label for="cat-succ">Succulents</label>
+                    </div>
+                    <div class="filter-count">(17)</div>
+                  </div>
+                </li>
+
+                <li>
+                  <div class="filter-item">
+                    <div class="filter-left">
+                      <input id="cat-terr" type="checkbox" />
+                      <label for="cat-terr">Terrariums</label>
+                    </div>
+                    <div class="filter-count">(19)</div>
+                  </div>
+                </li>
+
+                <li>
+                  <div class="filter-item">
+                    <div class="filter-left">
+                      <input id="cat-gard" type="checkbox" />
+                      <label for="cat-gard">Gardening</label>
+                    </div>
+                    <div class="filter-count">(13)</div>
+                  </div>
+                </li>
+
+                <li>
+                  <div class="filter-item">
+                    <div class="filter-left">
+                      <input id="cat-acc" type="checkbox" />
+                      <label for="cat-acc">Accessories</label>
+                    </div>
+                    <div class="filter-count">(18)</div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="sidebar-block">
+              <h3>Price Range</h3>
+              <div class="price-range">
+                <input
+                  type="range"
+                  min="0"
+                  max="1500"
+                  value="300"
+                  aria-label="Price range"
+                />
+                <div class="price-values">
+                  <span class="muted">Price: $39 – $1230</span>
+                  <button class="filter-btn" type="button">Filter</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="sidebar-block">
+              <h3>Size</h3>
+              <ul class="size-list" aria-label="Sizes">
+                <li>
+                  <div class="filter-item">
+                    <div class="filter-left">
+                      <input id="size-small" type="checkbox" />
+                      <label for="size-small">Small</label>
+                    </div>
+                    <div class="filter-count">(119)</div>
+                  </div>
+                </li>
+
+                <li>
+                  <div class="filter-item">
+                    <div class="filter-left">
+                      <input id="size-medium" type="checkbox" />
+                      <label for="size-medium">Medium</label>
+                    </div>
+                    <div class="filter-count">(86)</div>
+                  </div>
+                </li>
+
+                <li>
+                  <div class="filter-item">
+                    <div class="filter-left">
+                      <input id="size-large" type="checkbox" />
+                      <label for="size-large">Large</label>
+                    </div>
+                    <div class="filter-count">(78)</div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="sidebar-block">
+              <div class="sidebar-sale" aria-hidden="true">
+                <img src="Super Sale Banner.png" alt="Super Sale Banner" />
+                <div class="sale-text">
+                  <h4>Super Sale</h4>
+                  <p>UP TO 75% OFF</p>
+                </div>
+              </div>
+            </div>
+          </aside>
+
+          <div class="products-wrap">
+            <div class="products" aria-live="polite">
+              <div class="card">
+                <img src="Card Product.png" alt="Plant 1" />
+              </div>
+              <div class="card">
+                <img src="Card Product-2.png" alt="Plant 2" />
+              </div>
+              <div class="card">
+                <img src="Card Product — 3.png" alt="Plant 3" />
+              </div>
+              <div class="card">
+                <img src="Card Product — 4.png" alt="Plant 4" />
+              </div>
+              <div class="card">
+                <img src="Card Product-5 — копия.png" alt="Plant 5" />
+              </div>
+              <div class="card">
+                <img src="Card Product-6.png" alt="Plant 6" />
+              </div>
+              <div class="card">
+                <img src="Card Product-7.png" alt="Plant 7" />
+              </div>
+              <div class="card">
+                <img src="Card Product-8.png" alt="Plant 8" />
+              </div>
+              <div class="card">
+                <img src="Card Product-9.png" alt="Plant 9" />
               </div>
             </div>
           </div>
-    
-          <div class="sidebar-block">
-            <h3>Size</h3>
-            <ul class="size-list">
-              <li><a href="#">Small <span>(119)</span></a></li>
-              <li><a href="#">Medium <span>(86)</span></a></li>
-              <li><a href="#">Large <span>(78)</span></a></li>
-            </ul>
+        </div>
+      </main>
+
+      <section class="promo" aria-labelledby="promo-heading">
+        <div class="promo-grid">
+          <div class="promo-card">
+            <div class="promo-text">
+              <h3>SUMMER CACTUS&SUCCULENTS</h3>
+              <p>
+                We are an online plant shop offering a wide range of cheap and
+                trendy plants.
+              </p>
+              <a href="#" class="btn">Shop Sale</a>
+            </div>
+            <img src="image 14.jpg" alt="Promo image 1" />
           </div>
-    
-          <div class="sidebar-sale">
-            <img src="Super Sale Banner.png" alt="Super Sale">
-            <div class="sale-text">
-              <h4>Super Sale</h4>
-              <p>UP TO 75% OFF</p>
+
+          <div class="promo-card">
+            <div class="promo-text">
+              <h3>STYLING TRENDS&MUCH MORE</h3>
+              <p>
+                We are an online plant shop offering a wide range of cheap and
+                trendy plants.
+              </p>
+              <a href="#" class="btn">Explore</a>
+            </div>
+            <img src="image 15.jpg" alt="Promo image 2" />
+          </div>
+        </div>
+      </section>
+
+      <section class="blog" aria-labelledby="blog-heading">
+        <h2 id="blog-heading">Our Blog Posts</h2>
+        <p class="subtitle">
+          We are an online plant shop offering a wide range of cheap and trendy
+          plants.
+        </p>
+
+        <div class="blog-grid">
+          <article class="blog-card">
+            <img src="01.jpg" alt="Cactus & Succulent Care Tips" />
+            <div class="blog-info">
+              <span class="meta">September 12 | Read in 6 minutes</span>
+              <h4>Cactus & Succulent Care Tips</h4>
+              <p>
+                Cacti and succulents are easy-care plants for any home or patio.
+              </p>
+              <a href="#" class="readmore">Read More →</a>
+            </div>
+          </article>
+
+          <article class="blog-card">
+            <img src="02.jpg" alt="Top 10 Succulents for Your Home" />
+            <div class="blog-info">
+              <span class="meta">September 13 | Read in 2 minutes</span>
+              <h4>Top 10 Succulents for Your Home</h4>
+              <p>Best in hanging baskets. Prefers medium to high light.</p>
+              <a href="#" class="readmore">Read More →</a>
+            </div>
+          </article>
+
+          <article class="blog-card">
+            <img src="03.jpg" alt="Cacti & Succulent Care Tips" />
+            <div class="blog-info">
+              <span class="meta">September 15 | Read in 3 minutes</span>
+              <h4>Cacti & Succulent Care Tips</h4>
+              <p>
+                Cacti and succulents thrive in containers and because most
+                are...
+              </p>
+              <a href="#" class="readmore">Read More →</a>
+            </div>
+          </article>
+
+          <article class="blog-card">
+            <img src="04.jpg" alt="Best Houseplants Room By Room" />
+            <div class="blog-info">
+              <span class="meta">September 15 | Read in 2 minutes</span>
+              <h4>Best Houseplants Room By Room</h4>
+              <p>The benefits of houseplants are endless. In addition to...</p>
+              <a href="#" class="readmore">Read More →</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <footer class="footer" role="contentinfo">
+        <div class="footer-top">
+          <div class="footer-card">
+            <img src="Picture.jpg" alt="Garden Care" />
+            <div>
+              <h4>Garden Care</h4>
+              <p>
+                We are an online plant shop offering a wide range of cheap and
+                trendy plants.
+              </p>
             </div>
           </div>
-        </aside>
-    
-      
-        <section class="products-page">
-          <div class="container">
-            <aside class="sidebar">
-             
-            </aside>
-        
-           
-            <div class="products">
-              <div class="card"><img src="Card Product.png" alt="Plant 1" /></div>
-              <div class="card"><img src="Card Product-2.png" alt="Plant 2" /></div>
-              <div class="card"><img src="Card Product — 3.png" alt="Plant 3" /></div>
-              <div class="card"><img src="Card Product — 4.png" alt="Plant 4" /></div>
-              <div class="card"><img src="Card Product-5 — копия.png" alt="Plant 5" /></div>
-              <div class="card"><img src="Card Product-6.png" alt="Plant 6" /></div>
-              <div class="card"><img src="Card Product-7.png" alt="Plant 7" /></div>
-              <div class="card"><img src="Card Product-8.png" alt="Plant 8" /></div>
-              <div class="card"><img src="Card Product-9.png" alt="Plant 9" /></div>
+
+          <div class="footer-card">
+            <img src="Picture-2.jpg" alt="Plant Renovation" />
+            <div>
+              <h4>Plant Renovation</h4>
+              <p>
+                We are an online plant shop offering a wide range of cheap and
+                trendy plants.
+              </p>
             </div>
           </div>
-        </section>
-        
-    <section class="promo">
-      <div class="promo-grid">
-        <div class="promo-card">
-          <div class="promo-text">
-            <h3>SUMMER CACTUS&SUCCULENTS</h3>
-            <p>We are an online plant shop offering a wide range of cheap and trendy plants.</p>
-            <a href="#" class="btn">Shop Sale</a>
+
+          <div class="footer-card">
+            <img src="Picture-3.jpg" alt="Watering Garden" />
+            <div>
+              <h4>Watering Garden</h4>
+              <p>
+                We are an online plant shop offering a wide range of cheap and
+                trendy plants.
+              </p>
+            </div>
           </div>
-          <img src="image 14.jpg" alt="Promo" />
         </div>
 
-        <div class="promo-card">
-          <div class="promo-text">
-            <h3>STYLING TRENDS&MUCH MORE</h3>
-            <p>We are an online plant shop offering a wide range of cheap and trendy plants.</p>
-            <a href="#" class="btn">Explore</a>
+        <div class="footer-middle">
+          <div class="footer-col">
+            <h5>My Account</h5>
+            <a href="#">My Account</a>
+            <a href="#">Our Stores</a>
+            <a href="#">Contact Us</a>
+            <a href="#">Career</a>
+            <a href="#">Specials</a>
           </div>
-          <img src="image 15.jpg" alt="Promo" />
-        </div>
-      </div>
-    </section>
 
-    <section class="blog">
-      <h2>Our Blog Posts</h2>
-      
-      <p class="subtitle">
-        We are an online plant shop offering a wide range of cheap and trendy plants.
-      </p>
-    
-      <div class="blog-grid">
-        <div class="blog-card">
-          <img src="01.jpg" alt="Cactus & Succulent Care Tips" />
-          <div class="blog-info">
-            <span class="meta">September 12 | Read in 6 minutes</span>
-            <h4>Cactus & Succulent Care Tips</h4>
-            <p>Cacti and succulents are easy-care plants for any home or patio.</p>
-            <a href="#" class="readmore">Read More →</a>
+          <div class="footer-col">
+            <h5>Help & Guide</h5>
+            <a href="#">Help Center</a>
+            <a href="#">How to Buy</a>
+            <a href="#">Shipping & Delivery</a>
+            <a href="#">Product Policy</a>
+            <a href="#">How to Return</a>
           </div>
-        </div>
-    
-        <div class="blog-card">
-          <img src="02.jpg" alt="Top 10 Succulents for Your Home" />
-          <div class="blog-info">
-            <span class="meta">September 13 | Read in 2 minutes</span>
-            <h4>Top 10 Succulents for Your Home</h4>
-            <p>Best in hanging baskets. Prefers medium to high light.</p>
-            <a href="#" class="readmore">Read More →</a>
-          </div>
-        </div>
-    
-        <div class="blog-card">
-          <img src="03.jpg" alt="Cacti & Succulent Care Tips" />
-          <div class="blog-info">
-            <span class="meta">September 15 | Read in 3 minutes</span>
-            <h4>Cacti & Succulent Care Tips</h4>
-            <p>Cacti and succulents thrive in containers and because most are...</p>
-            <a href="#" class="readmore">Read More →</a>
-          </div>
-        </div>
-    
-        <div class="blog-card">
-          <img src="04.jpg" alt="Best Houseplants Room By Room" />
-          <div class="blog-info">
-            <span class="meta">September 15 | Read in 2 minutes</span>
-            <h4>Best Houseplants Room By Room</h4>
-            <p>The benefits of houseplants are endless. In addition to...</p>
-            <a href="#" class="readmore">Read More →</a>
-          </div>
-        </div>
-      </div>
-    </section>
-    
-   
 
-   
-        
-    <footer class="footer">
-      <div class="footer-top">
-        <div class="footer-card">
-          <img src="Picture.jpg" alt="Garden Care" />
-          <div>
-            <h4>Garden Care</h4>
-            <p>We are an online plant shop offering a wide range of cheap and trendy plants.</p>
+          <div class="footer-col">
+            <h5>Categories</h5>
+            <a href="#">House Plants</a>
+            <a href="#">Potter Plants</a>
+            <a href="#">Seeds</a>
+            <a href="#">Small Plants</a>
+            <a href="#">Accessories</a>
+          </div>
+
+          <div class="footer-col">
+            <h5>Social Media</h5>
+            <div class="socials">
+              <a href="#"><img src="Facebook.svg" alt="Facebook" /></a>
+              <a href="#"><img src="Instagram.svg" alt="Instagram" /></a>
+              <a href="#"><img src="Twitter.svg" alt="Twitter" /></a>
+              <a href="#"><img src="Linkidin.svg" alt="LinkedIn" /></a>
+              <a href="#"><img src="Youtube.svg" alt="YouTube" /></a>
+            </div>
           </div>
         </div>
-    
-        <div class="footer-card">
-          <img src="Picture-2.jpg" alt="Plant Renovation" />
-          <div>
-            <h4>Plant Renovation</h4>
-            <p>We are an online plant shop offering a wide range of cheap and trendy plants.</p>
-          </div>
+
+        <div class="footer-bottom">
+          <p>© 2025 GreenShop. All Rights Reserved.</p>
         </div>
-    
-        <div class="footer-card">
-          <img src="Picture-3.jpg"Watering Garden" />
-          <div>
-            <h4>Watering Garden</h4>
-            <p>We are an online plant shop offering a wide range of cheap and trendy plants.</p>
-          </div>
-        </div>
-      </div>
-    
-      <div class="footer-middle">
-        <div class="footer-col">
-          <h5>My Account</h5>
-          <a href="#">My Account</a>
-          <a href="#">Our Stores</a>
-          <a href="#">Contact Us</a>
-          <a href="#">Career</a>
-          <a href="#">Specials</a>
-        </div>
-    
-        <div class="footer-col">
-          <h5>Help & Guide</h5>
-          <a href="#">Help Center</a>
-          <a href="#">How to Buy</a>
-          <a href="#">Shipping & Delivery</a>
-          <a href="#">Product Policy</a>
-          <a href="#">How to Return</a>
-        </div>
-    
-        <div class="footer-col">
-          <h5>Categories</h5>
-          <a href="#">House Plants</a>
-          <a href="#">Potter Plants</a>
-          <a href="#">Seeds</a>
-          <a href="#">Small Plants</a>
-          <a href="#">Accessories</a>
-        </div>
-    
-        <div class="footer-col">
-          <h5>Social Media</h5>
-          <div class="socials">
-            <a href="#"><img src="Facebook.svg" alt="Facebook" /></a>
-            <a href="#"><img src="Instagram.svg" alt="Instagram" /></a>
-            <a href="#"><img src="Twitter.svg" alt="Twitter" /></a>
-            <a href="#"><img src="Linkidin.svg" alt="LinkedIn" /></a>
-            <a href="#"><img src="Youtube.svg" alt="YouTube" /></a>
-          </div>
-        </div>
-      </div>
-    
-      <div class="footer-bottom">
-        <p>© 2025 GreenShop. All Rights Reserved.</p>
-      </div>
-    </footer>
-    
+      </footer>
+    </div>
   </body>
-
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "Poppins", sans-serif;
-    }
-
-    body {
-      color: #3d3d3d;
-      background: #fff;
-    }
-
-    .header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 20px 0;
-    }
-
-    .logo img {
-      height: 40px;
-    }
-
-    .nav-list {
-      display: flex;
-      align-items: center;
-      list-style: none;
-      gap: 50px;
-    }
-
-    .nav-list a {
-      text-decoration: none;
-      color: #3d3d3d;
-      font-weight: 500;
-      font-size: 16px;
-      padding: 6px 0;
-      transition: all 0.3s ease;
-    }
-
-    .nav-list a:hover {
-      color: #1a712a;
-      border-bottom: 2px solid #1a712a;
-    }
-
-    .login-btn {
-      background-color: #46a358;
-      color: white;
-      border: none;
-      padding: 10px 25px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 15px;
-      transition: all 0.3s ease;
-    }
-
-    .login-btn:hover {
-      background-color: #3b8d4e;
-      transform: scale(1.05);
-    }
-
-  
-    .hero {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      max-width: 1100px;
-      margin: 40px auto;
-      gap: 40px;
-    }
-
-    .hero-text {
-      max-width: 50%;
-    }
-
-    .hero-text .subtitle {
-      color: #555;
-      font-size: 16px;
-      margin-bottom: 10px;
-    }
-
-    .hero-text h1 {
-      font-size: 38px;
-      line-height: 1.3;
-      margin-bottom: 20px;
-    }
-
-    .hero-text h1 span {
-      color: #46a358;
-    }
-
-    .hero-text .description {
-      color: #666;
-      margin-bottom: 30px;
-      line-height: 1.6;
-    }
-
-    .shop-btn {
-      background-color: #46a358;
-      color: white;
-      border: none;
-      padding: 12px 30px;
-      border-radius: 6px;
-      font-weight: 500;
-      font-size: 15px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .shop-btn:hover {
-      background-color: #3b8d4e;
-      transform: translateY(-2px);
-    }
-
-  
-    .navigation-bar {
-      max-width: 1200px;
-      margin: 20px auto;
-      padding: 0 20px;
-    }
-
-    .navigation-bar h1 {
-      display: inline-block;
-      margin-right: 30px;
-      font-size: 18px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: color 0.3s ease;
-    }
-
-    .navigation-bar .active {
-      color: #46a358;
-    }
-
-
-
-    .products-page .container {
-  display: grid;
-  grid-template-columns: 250px 1fr;
-  gap: 40px;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 60px 0;
-}
-
-
-.products {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
-  gap: 20px;
-}
-
-.card {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 10px;
-  background: #fff;
-  text-align: center;
-  transition: all 0.3s ease;
-}
-
-.card:hover {
-  border-color: #46a358;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transform: translateY(-5px);
-}
-
-
-
-.sidebar {
-  background: #fff;
-}
-
-.sidebar-block {
-  margin-bottom: 40px;
-}
-
-.sidebar h3 {
-  font-size: 18px;
-  color: #2c742f;
-  margin-bottom: 16px;
-  border-bottom: 1px solid #e5e5e5;
-  padding-bottom: 8px;
-}
-
-.category-list,
-.size-list {
-  list-style: none;
-  padding: 0;
-}
-
-.category-list li,
-.size-list li {
-  margin-bottom: 10px;
-}
-
-.category-list a,
-.size-list a {
-  color: #333;
-  text-decoration: none;
-  font-size: 15px;
-  display: flex;
-  justify-content: space-between;
-  transition: color 0.2s;
-}
-
-.category-list a:hover,
-.size-list a:hover {
-  color: #46a358;
-}
-
-
-.price-range {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.price-range input[type="range"] {
-  width: 100%;
-  accent-color: #46a358;
-}
-
-.price-values {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 14px;
-}
-
-.filter-btn {
-  background: #46a358;
-  color: #fff;
-  border: none;
-  padding: 6px 14px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.filter-btn:hover {
-  background: #2e7a3a;
-}
-
-
-.sidebar-sale {
-  position: relative;
-  border-radius: 10px;
-  overflow: hidden;
-  text-align: center;
-}
-
-.sidebar-sale img {
-  width: 100%;
-  border-radius: 10px;
-}
-
-.sidebar-sale .sale-text {
-  position: absolute;
-  top: 20%;
-  left: 50%;
-  transform: translateX(-50%);
-  color: #2c742f;
-}
-
-.sidebar-sale h4 {
-  font-size: 22px;
-  font-weight: bold;
-}
-
-.sidebar-sale p {
-  font-size: 16px;
-  font-weight: 600;
-}
-
-
-@media (max-width: 900px) {
-  .products-page .container {
-    grid-template-columns: 1fr;
-  }
-
-  .sidebar {
-    order: 2;
-  }
-}
-
-
-    .Categories {
-      background: #fbfbfb;
-      padding: 20px;
-      border-radius: 8px;
-    }
-
-    .Categories1 {
-      font-size: 20px;
-      margin-bottom: 15px;
-    }
-
-    .category-item,
-    .category-item1 {
-      font-size: 16px;
-      margin: 8px 0;
-      cursor: pointer;
-      transition: color 0.3s ease;
-    }
-
-    .category-item:hover,
-    .category-item1:hover {
-      color: #46a358;
-    }
-
-    .container {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    .card {
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      padding: 10px;
-      text-align: center;
-      background: #fff;
-      transition: all 0.3s ease;
-    }
-
-    .card:hover {
-      border-color: #46a358;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      transform: translateY(-5px);
-    }
-
-   
-    .promo {
-      text-align: center;
-      padding: 60px 20px;
-      background: linear-gradient(135deg, #46a358, #5fc96a, #79db82);
-      color: white;
-    }
-
-    .promo-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-      gap: 20px;
-    }
-
-    .promo-card {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: #f9f9f9;
-      border-radius: 12px;
-      padding: 20px;
-      transition: 0.3s;
-    }
-
-    .promo-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    }
-
-    .promo-card img {
-      width: 180px;
-      height: auto;
-    }
-
-    .promo-text {
-      max-width: 60%;
-      text-align: left;
-    }
-
-    .promo-text h3 {
-      font-size: 18px;
-      color: #0d5727;
-      margin-bottom: 10px;
-    }
-
-    .promo-text p {
-      font-size: 14px;
-      color: #555;
-      margin-bottom: 15px;
-    }
-
-    .btn {
-      display: inline-block;
-      background: #52b788;
-      color: #fff;
-      text-decoration: none;
-      padding: 10px 20px;
-      border-radius: 6px;
-      font-size: 14px;
-      transition: 0.3s;
-    }
-
-    .btn:hover {
-      background: #3e9368;
-    }
-
-  
-    .blog {
-  padding: 80px 0;
-  background: #ffffff;
-  text-align: center;
-}
-
-.blog h2 {
-  font-size: 28px;
-  color: #2c742f;
-}
-
-.blog .subtitle {
-  margin-top: 10px;
-  color: #666;
-  font-size: 15px;
-}
-
-.blog-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 25px;
-  margin-top: 40px;
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.blog-card {
-  border: 1px solid #eee;
-  border-radius: 10px;
-  overflow: hidden;
-  background: #fff;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  text-align: left;
-}
-
-.blog-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-}
-
-.blog-card img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-}
-
-.blog-info {
-  padding: 18px;
-}
-
-.blog-info .meta {
-  color: #79b482;
-  font-size: 13px;
-  margin-bottom: 8px;
-  display: block;
-}
-
-.blog-info h4 {
-  color: #0d5727;
-  font-size: 16px;
-  margin-bottom: 8px;
-  line-height: 1.4;
-}
-
-.blog-info p {
-  font-size: 14px;
-  color: #555;
-  margin-bottom: 12px;
-}
-
-.readmore {
-  text-decoration: none;
-  color: #46a358;
-  font-weight: 500;
-}
-
-.readmore:hover {
-  text-decoration: underline;
-}
-
-
-@media (max-width: 1024px) {
-  .blog-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 600px) {
-  .blog-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .blog-info {
-    padding: 15px;
-  }
-}
-
-
-    .blog h2 {
-      font-size: 28px;
-      color: #0d5727;
-    }
-
-    .blog .subtitle {
-      margin-top: 10px;
-      color: #666;
-      font-size: 15px;
-    }
-
-    .blog-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 25px;
-      margin-top: 40px;
-    }
-
-    .blog-card {
-      border: 1px solid #eee;
-      border-radius: 10px;
-      overflow: hidden;
-      transition: 0.3s;
-      text-align: left;
-      background: #fff;
-    }
-
-    .blog-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-    }
-
-    .blog-card img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-    }
-
-    .blog-info {
-      padding: 15px;
-    }
-
-    .blog-info .meta {
-      color: #777;
-      font-size: 13px;
-      margin-bottom: 8px;
-    }
-
-    .blog-info h4 {
-      color: #0d5727;
-      font-size: 16px;
-      margin-bottom: 8px;
-    }
-
-    .blog-info p {
-      font-size: 14px;
-      color: #555;
-      margin-bottom: 10px;
-    }
-
-    .readmore {
-      text-decoration: none;
-      color: #52b788;
-      font-weight: 500;
-    }
-
-    .readmore:hover {
-      text-decoration: underline;
-    }
-
-
-    footer {
-      background-color: #fff;
-      border-top: 1px solid #e5e5e5;
-      margin-top: 50px;
-      color: #333;
-    }
-
-    .footer-top {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      padding: 40px 10%;
-      border-bottom: 1px solid #e5e5e5;
-    }
-
-    .footer-section h4 {
-      color: #2c742f;
-      margin: 10px 0;
-    }
-
-    .newsletter input {
-      padding: 10px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      outline: none;
-      margin-right: 10px;
-    }
-
-    .newsletter button {
-      background-color: #2c742f;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .newsletter button:hover {
-      background-color: #256528;
-      transform: scale(1.05);
-    }
-
-    * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  body {
-    font-family: "Poppins", Arial, sans-serif;
-    background-color: #f9f9f9;
-    color: #333;
-    line-height: 1.6;
-  }
-
-
-
-  footer.footer {
-  background: #f0f0f0;
-  padding: 60px 0;
-  text-align: center;
-  color: #333;
-  margin-top: 80px;
-  width: 100%;
-}
-
-footer.footer .footer-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 40px;
-}
-
-
-
-  .footer-top {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    padding: 40px 10%;
-    border-bottom: 1px solid #e5e5e5;
-  }
-
-  .footer-section {
-    flex: 1 1 200px;
-    margin: 15px;
-  }
-
-  .footer-section h4 {
-    font-size: 18px;
-    color: #2c742f;
-    margin-bottom: 10px;
-  }
-
-  .footer-section p {
-    font-size: 14px;
-    color: #666;
-    line-height: 1.6;
-  }
-
-  .newsletter {
-    flex: 1 1 250px;
-    margin: 15px;
-  }
-
-  .newsletter h4 {
-    color: #2c742f;
-    margin-bottom: 10px;
-  }
-
-  .newsletter p {
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 15px;
-  }
-
-  .newsletter form {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
-  .newsletter input {
-    flex: 1;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    outline: none;
-    transition: border 0.3s;
-  }
-
-  .newsletter input:focus {
-    border-color: #2c742f;
-  }
-
-  .newsletter button {
-    padding: 10px 20px;
-    background-color: #2c742f;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-
-  .newsletter button:hover {
-    background-color: #256528;
-  }
-
-  footer.footer {
-  background: #fbfbfb;
-  color: #333;
-  font-family: 'Poppins', sans-serif;
-  width: 100%;
-}
-
-/* Верхняя часть */
-.footer-top {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 30px;
-  padding: 60px 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-  border-bottom: 1px solid #eaeaea;
-}
-
-.footer-card {
-  display: flex;
-  align-items: flex-start;
-  gap: 15px;
-  flex: 1 1 300px;
-}
-
-.footer-card h4 {
-  font-size: 18px;
-  color: #2c742f;
-  margin-bottom: 8px;
-}
-
-.footer-card p {
-  font-size: 14px;
-  color: #666;
-  line-height: 1.5;
-}
-
-/* Средняя часть */
-.footer-middle {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 40px;
-  padding: 50px 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-  border-bottom: 1px solid #eaeaea;
-}
-
-.footer-col h5 {
-  color: #2c742f;
-  font-size: 16px;
-  margin-bottom: 15px;
-}
-
-.footer-col a {
-  display: block;
-  color: #555;
-  font-size: 14px;
-  margin-bottom: 8px;
-  text-decoration: none;
-  transition: 0.3s;
-}
-
-.footer-col a:hover {
-  color: #46a358;
-}
-
-/* Соцсети */
-.socials {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-
-.socials img {
-  width: 24px;
-  height: 24px;
-  transition: 0.3s;
-}
-
-.socials img:hover {
-  transform: scale(1.15);
-}
-
-/* Нижняя часть */
-.footer-bottom {
-  text-align: center;
-  padding: 20px;
-  font-size: 14px;
-  color: #888;
-}
-
-/* 📱 Адаптив */
-@media (max-width: 768px) {
-  .footer-top {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .footer-card {
-    justify-content: center;
-  }
-
-  .footer-middle {
-    grid-template-columns: 1fr 1fr;
-    text-align: center;
-  }
-}
-
-@media (max-width: 480px) {
-  .footer-middle {
-    grid-template-columns: 1fr;
-  }
-}
-
-  }
-
-
-  .social-media {
-    display: flex;
-    gap: 10px;
-  }
-
-  .social-media a img {
-    width: 24px;
-    height: 24px;
-    transition: transform 0.2s;
-  }
-
-  .social-media a:hover img {
-    transform: scale(1.1);
-  }
-
-  .payments {
-    margin-top: 15px;
-    display: flex;
-    gap: 10px;
-  }
-
-  .payments img {
-    width: 40px;
-    height: auto;
-    opacity: 0.9;
-    transition: opacity 0.3s;
-  }
-
-  .payments img:hover {
-    opacity: 1;
-  }
-
-  .copyright {
-    text-align: center;
-    font-size: 13px;
-    color: #777;
-    padding: 20px;
-    background-color: #fff;
-    border-top: 1px solid #e5e5e5;
-  }
-
-
-  @media (max-width: 768px) {
-    .footer-top,
-    .footer-bottom {
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-
-    .newsletter form {
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .newsletter input,
-    .newsletter button {
-      width: 100%;
-    }
-  }
-
-
-
-    .copyright {
-      text-align: center;
-      padding: 20px;
-      font-size: 13px;
-      color: #777;
-      background: #fff;
-    }
-
-    @media (max-width: 900px) {
-      .hero {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .header-container {
-        grid-template-columns: 1fr;
-      }
-
-      .container {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (max-width: 768px) {
-      .promo-card {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .promo-text {
-        max-width: 100%;
-      }
-
-      .promo-card img {
-        margin-bottom: 15px;
-      }
-
-      .blog-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr); 
-  gap: 25px;
-  margin-top: 40px;
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-  
-
-    @media (max-width: 600px) {
-      .container {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
 </html>
