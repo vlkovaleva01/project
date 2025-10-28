@@ -30,10 +30,16 @@
         background: #f9f9f9;
         color: var(--text);
         -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
       }
       a {
         color: inherit;
         text-decoration: none;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
       }
 
       .site {
@@ -212,7 +218,13 @@
         align-items: center;
         gap: 10px;
       }
-
+      .filter-left input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        accent-color: var(--green);
+        cursor: pointer;
+        transform: scale(1.02);
+      }
       .filter-count {
         color: var(--muted);
         font-size: 0.86rem;
@@ -289,12 +301,6 @@
         padding: 12px;
         text-align: center;
         transition: transform 0.18s ease, box-shadow 0.18s ease;
-      }
-      .card img {
-        max-width: 100%;
-        height: auto;
-        display: block;
-        border-radius: 6px;
       }
       .card:hover {
         transform: translateY(-6px);
@@ -485,6 +491,181 @@
         height: 1px;
         overflow: hidden;
       }
+
+      /* --- АДАПТИВНІСТЬ --- */
+
+      /* Загальні */
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+      body {
+        overflow-x: hidden;
+      }
+
+      /* --- До 1200px --- */
+      @media (max-width: 1200px) {
+        .products {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .promo-grid {
+          grid-template-columns: 1fr;
+        }
+        .footer-middle {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      /* --- До 992px --- */
+      @media (max-width: 992px) {
+        header.header {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 12px;
+        }
+
+        .hero {
+          flex-direction: column;
+          text-align: center;
+        }
+        .hero-text {
+          max-width: 100%;
+        }
+
+        .layout {
+          grid-template-columns: 1fr;
+        }
+        aside.sidebar {
+          order: 2;
+        }
+
+        .products {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .navigation-bar {
+          flex-wrap: wrap;
+          gap: 16px;
+          justify-content: center;
+        }
+      }
+
+      /* --- До 768px --- */
+      @media (max-width: 768px) {
+        .nav-list {
+          flex-wrap: wrap;
+          gap: 20px;
+          justify-content: center;
+        }
+
+        .hero h1 {
+          font-size: 1.8rem;
+        }
+
+        .products {
+          grid-template-columns: 1fr;
+        }
+
+        .promo {
+          padding: 24px;
+        }
+
+        .blog-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .footer-top {
+          flex-direction: column;
+          align-items: center;
+        }
+        .footer-card {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .footer-middle {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+      }
+
+      /* --- До 540px --- */
+      @media (max-width: 540px) {
+        .nav-list {
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        .hero {
+          gap: 20px;
+        }
+
+        .hero-text h1 {
+          font-size: 1.6rem;
+        }
+
+        .shop-btn,
+        .login-btn {
+          width: 100%;
+        }
+
+        .navigation-bar h2 {
+          font-size: 0.95rem;
+        }
+
+        .blog-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* --- До 320px --- */
+      @media (max-width: 320px) {
+        :root {
+          font-size: 14px;
+        }
+
+        .hero-text h1 {
+          font-size: 1.4rem;
+        }
+
+        .promo-card {
+          flex-direction: column;
+        }
+
+        .footer-card img {
+          width: 60px;
+          height: 60px;
+        }
+
+        .footer-bottom {
+          font-size: 0.8rem;
+        }
+      }
+
+      /* --- До 280px --- */
+      @media (max-width: 280px) {
+        :root {
+          font-size: 13px;
+        }
+
+        .hero-text h1 {
+          font-size: 1.2rem;
+        }
+
+        .promo-card img {
+          width: 100px;
+        }
+
+        .login-btn,
+        .shop-btn {
+          padding: 8px 12px;
+          font-size: 0.85rem;
+        }
+
+        .nav-list {
+          gap: 8px;
+        }
+      }
     </style>
   </head>
   <body>
@@ -545,7 +726,8 @@
                 <li>
                   <div class="filter-item">
                     <div class="filter-left">
-                      <label>House Plants</label>
+                      <input id="cat-house" type="checkbox" />
+                      <label for="cat-house">House Plants</label>
                     </div>
                     <div class="filter-count">(33)</div>
                   </div>
@@ -554,7 +736,8 @@
                 <li>
                   <div class="filter-item">
                     <div class="filter-left">
-                      <label>Potter Plants</label>
+                      <input id="cat-potter" type="checkbox" />
+                      <label for="cat-potter">Potter Plants</label>
                     </div>
                     <div class="filter-count">(12)</div>
                   </div>
@@ -563,7 +746,8 @@
                 <li>
                   <div class="filter-item">
                     <div class="filter-left">
-                      <label>Seeds</label>
+                      <input id="cat-seeds" type="checkbox" />
+                      <label for="cat-seeds">Seeds</label>
                     </div>
                     <div class="filter-count">(65)</div>
                   </div>
@@ -572,7 +756,8 @@
                 <li>
                   <div class="filter-item">
                     <div class="filter-left">
-                      <label>Small Plants</label>
+                      <input id="cat-small" type="checkbox" />
+                      <label for="cat-small">Small Plants</label>
                     </div>
                     <div class="filter-count">(39)</div>
                   </div>
@@ -581,7 +766,8 @@
                 <li>
                   <div class="filter-item">
                     <div class="filter-left">
-                      <label>Big Plants</label>
+                      <input id="cat-big" type="checkbox" />
+                      <label for="cat-big">Big Plants</label>
                     </div>
                     <div class="filter-count">(23)</div>
                   </div>
@@ -590,7 +776,8 @@
                 <li>
                   <div class="filter-item">
                     <div class="filter-left">
-                      <label>Succulents</label>
+                      <input id="cat-succ" type="checkbox" />
+                      <label for="cat-succ">Succulents</label>
                     </div>
                     <div class="filter-count">(17)</div>
                   </div>
@@ -599,7 +786,8 @@
                 <li>
                   <div class="filter-item">
                     <div class="filter-left">
-                      <label>Terrariums</label>
+                      <input id="cat-terr" type="checkbox" />
+                      <label for="cat-terr">Terrariums</label>
                     </div>
                     <div class="filter-count">(19)</div>
                   </div>
@@ -608,7 +796,8 @@
                 <li>
                   <div class="filter-item">
                     <div class="filter-left">
-                      <label>Gardening</label>
+                      <input id="cat-gard" type="checkbox" />
+                      <label for="cat-gard">Gardening</label>
                     </div>
                     <div class="filter-count">(13)</div>
                   </div>
@@ -617,7 +806,8 @@
                 <li>
                   <div class="filter-item">
                     <div class="filter-left">
-                      <label>Accessories</label>
+                      <input id="cat-acc" type="checkbox" />
+                      <label for="cat-acc">Accessories</label>
                     </div>
                     <div class="filter-count">(18)</div>
                   </div>
@@ -637,174 +827,206 @@
                 />
                 <div class="price-values">
                   <span class="muted">Price: $39 – $1230</span>
-                  <button class="filter-btn" type="button
                   <button class="filter-btn" type="button">Filter</button>
                 </div>
               </div>
             </div>
 
-            <div class="sidebar-sale">
-              <img src="Super Sale Banner.png" alt="Sale banner" />
-              <div class="sale-text">
-                <h4>Super Sale!</h4>
-                <p>Up to 50% Off</p>
+            <div class="sidebar-block">
+              <h3>Size</h3>
+              <ul class="size-list" aria-label="Sizes">
+                <li>
+                  <div class="filter-item">
+                    <div class="filter-left">
+                      <input id="size-small" type="checkbox" />
+                      <label for="size-small">Small</label>
+                    </div>
+                    <div class="filter-count">(119)</div>
+                  </div>
+                </li>
+
+                <li>
+                  <div class="filter-item">
+                    <div class="filter-left">
+                      <input id="size-medium" type="checkbox" />
+                      <label for="size-medium">Medium</label>
+                    </div>
+                    <div class="filter-count">(86)</div>
+                  </div>
+                </li>
+
+                <li>
+                  <div class="filter-item">
+                    <div class="filter-left">
+                      <input id="size-large" type="checkbox" />
+                      <label for="size-large">Large</label>
+                    </div>
+                    <div class="filter-count">(78)</div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="sidebar-block">
+              <div class="sidebar-sale" aria-hidden="true">
+                <img src="Super Sale Banner.png" alt="Super Sale Banner" />
+                <div class="sale-text">
+                  <h4>Super Sale</h4>
+                  <p>UP TO 75% OFF</p>
+                </div>
               </div>
             </div>
           </aside>
 
           <div class="products-wrap">
-            <div class="products">
+            <div class="products" aria-live="polite">
               <div class="card">
-                <img src="Card Product.png" alt="Aloe Vera plant" />
-                
+                <img src="Card Product.png" alt="Plant 1" />
               </div>
-
               <div class="card">
-                <img src="Card Product-2.png" alt="Monstera plant" />
-                
+                <img src="Card Product-2.png" alt="Plant 2" />
               </div>
-
               <div class="card">
-                <img src="Card Product — 3.png" alt="Cactus plant" />
-              
+                <img src="Card Product — 3.png" alt="Plant 3" />
               </div>
-
               <div class="card">
-                <img src="Card Product — 4.png" alt="Snake plant" />
-                <img src="Card Product-7.png" alt="Succulent mix" />
-                
+                <img src="Card Product — 4.png" alt="Plant 4" />
               </div>
-
               <div class="card">
-                <img src="Card Product-5 — копия.png" alt="Peace Lily" />
-                <img src="Card Product-8.png" alt="Succulent mix" />
-                
+                <img src="Card Product-5 — копия.png" alt="Plant 5" />
               </div>
-
               <div class="card">
-                <img src="Card Product-6.png" alt="Succulent mix" />
-                
-                <img src="Card Product-9.png" alt="Succulent mix" />
-
-                
-                
+                <img src="Card Product-6.png" alt="Plant 6" />
+              </div>
+              <div class="card">
+                <img src="Card Product-7.png" alt="Plant 7" />
+              </div>
+              <div class="card">
+                <img src="Card Product-8.png" alt="Plant 8" />
+              </div>
+              <div class="card">
+                <img src="Card Product-9.png" alt="Plant 9" />
               </div>
             </div>
           </div>
         </div>
-
-        <section class="promo">
-          <div class="promo-grid">
-            <div class="promo-card">
-              <div class="promo-text">
-                <h3>Summer Sale</h3>
-                <p>We are an online plant shop offering a wide range of cheap and trendy plants.</p>
-                <a href="#" class="btn">Shop Sale</a>
-              </div>
-              <img src="image 14.jpg" alt="Indoor plants sale" />
-            </div>
-
-            <div class="promo-card">
-              <div class="promo-text">
-                <h3>SUMMER CACTUS&SUCCULENTS</h3>
-                <p>We are an online plant shop offering a wide range of cheap and trendy plants.</p>
-                <a href="#" class="btn">Shop Sale</a>
-              </div>
-              <img src="image 15.jpg" alt="Starter kit" />
-            </div>
-          </div>
-        </section>
-
-        <section class="blog">
-          <h2>Our Blog Posts</h2>
-          <p class="subtitle">
-            We are an online plant shop offering a wide range of cheap and trendy plants.
-          </p>
-          <div class="blog-grid">
-            <div class="blog-card">
-              <img src="01.jpg" alt="Indoor plants care tips" />
-              <div class="blog-info">
-                <span class="meta">September 12 | Read in 6 minutes</span>
-                <h4>
-                  Cactus & Succulent Care Tips
-                  
-                  Cacti and succulents are easy-care plants for any home or patio.
-                  </h4>
-                <a href="#" class="readmore">Read More →</a>
-              </div>
-            </div>
-
-            <div class="blog-card">
-              <img src="02.jpg" alt="Decorating with plants" />
-              <div class="blog-info">
-                <span class="meta">September 13 | Read in 2 minutes</span>
-                <h4>
-                  Top 10 Succulents for Your Home
-                  
-                  Best in hanging baskets. Prefers medium to high light.
-                 </h4>
-                <a href="#" class="readmore">Read More →</a>
-              </div>
-            </div>
-
-            <div class="blog-card">
-              <img src="03.jpg" alt="Best plants for beginners" />
-              <div class="blog-info">
-                <span class="meta">September 15 | Read in 3 minutes</span>
-                <h4>
-                  Cacti & Succulent Care Tips
-                  
-                  Cacti and succulents thrive in containers and because most are...
-                 </h4>
-                <a href="#" class="readmore">Read More →</a>
-              </div>
-            </div>
-
-            <div class="blog-card">
-              <img src="04.jpg" alt="Succulent care" />
-              <div class="blog-info">
-                <span class="meta">September 15 | Read in 2 minutes</span>
-                <h4>
-                  Best Houseplants Room By Room
-                  
-                  The benefits of houseplants are endless. In addition to...
-                 </h4>
-                <a href="#" class="readmore">Read More →</a>
-              </div>
-            </div>
-          </div>
-        </section>
       </main>
 
-      <footer class="footer">
+      <section class="promo" aria-labelledby="promo-heading">
+        <div class="promo-grid">
+          <div class="promo-card">
+            <div class="promo-text">
+              <h3>SUMMER CACTUS&SUCCULENTS</h3>
+              <p>
+                We are an online plant shop offering a wide range of cheap and
+                trendy plants.
+              </p>
+              <a href="#" class="btn">Shop Sale</a>
+            </div>
+            <img src="image 14.jpg" alt="Promo image 1" />
+          </div>
+
+          <div class="promo-card">
+            <div class="promo-text">
+              <h3>STYLING TRENDS&MUCH MORE</h3>
+              <p>
+                We are an online plant shop offering a wide range of cheap and
+                trendy plants.
+              </p>
+              <a href="#" class="btn">Explore</a>
+            </div>
+            <img src="image 15.jpg" alt="Promo image 2" />
+          </div>
+        </div>
+      </section>
+
+      <section class="blog" aria-labelledby="blog-heading">
+        <h2 id="blog-heading">Our Blog Posts</h2>
+        <p class="subtitle">
+          We are an online plant shop offering a wide range of cheap and trendy
+          plants.
+        </p>
+
+        <div class="blog-grid">
+          <article class="blog-card">
+            <img src="01.jpg" alt="Cactus & Succulent Care Tips" />
+            <div class="blog-info">
+              <span class="meta">September 12 | Read in 6 minutes</span>
+              <h4>Cactus & Succulent Care Tips</h4>
+              <p>
+                Cacti and succulents are easy-care plants for any home or patio.
+              </p>
+              <a href="#" class="readmore">Read More →</a>
+            </div>
+          </article>
+
+          <article class="blog-card">
+            <img src="02.jpg" alt="Top 10 Succulents for Your Home" />
+            <div class="blog-info">
+              <span class="meta">September 13 | Read in 2 minutes</span>
+              <h4>Top 10 Succulents for Your Home</h4>
+              <p>Best in hanging baskets. Prefers medium to high light.</p>
+              <a href="#" class="readmore">Read More →</a>
+            </div>
+          </article>
+
+          <article class="blog-card">
+            <img src="03.jpg" alt="Cacti & Succulent Care Tips" />
+            <div class="blog-info">
+              <span class="meta">September 15 | Read in 3 minutes</span>
+              <h4>Cacti & Succulent Care Tips</h4>
+              <p>
+                Cacti and succulents thrive in containers and because most
+                are...
+              </p>
+              <a href="#" class="readmore">Read More →</a>
+            </div>
+          </article>
+
+          <article class="blog-card">
+            <img src="04.jpg" alt="Best Houseplants Room By Room" />
+            <div class="blog-info">
+              <span class="meta">September 15 | Read in 2 minutes</span>
+              <h4>Best Houseplants Room By Room</h4>
+              <p>The benefits of houseplants are endless. In addition to...</p>
+              <a href="#" class="readmore">Read More →</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <footer class="footer" role="contentinfo">
         <div class="footer-top">
           <div class="footer-card">
-            <img src="Picture-2.jpg" alt="Delivery" />
+            <img src="Picture.jpg" alt="Garden Care" />
             <div>
               <h4>Garden Care</h4>
               <p>
-
-                We are an online plant shop offering a wide range of cheap and trendy plants.</p>
+                We are an online plant shop offering a wide range of cheap and
+                trendy plants.
+              </p>
             </div>
           </div>
 
           <div class="footer-card">
-            <img src="Picture-3.jpg" alt="Support" />
+            <img src="Picture-2.jpg" alt="Plant Renovation" />
             <div>
               <h4>Plant Renovation</h4>
               <p>
-
-                We are an online plant shop offering a wide range of cheap and trendy plants.</p>
+                We are an online plant shop offering a wide range of cheap and
+                trendy plants.
+              </p>
             </div>
           </div>
 
           <div class="footer-card">
-            <img src="Picture.jpg" alt="Secure payment" />
+            <img src="Picture-3.jpg" alt="Watering Garden" />
             <div>
               <h4>Watering Garden</h4>
               <p>
-
-                We are an online plant shop offering a wide range of cheap and trendy plant</p>
+                We are an online plant shop offering a wide range of cheap and
+                trendy plants.
+              </p>
             </div>
           </div>
         </div>
@@ -820,36 +1042,37 @@
           </div>
 
           <div class="footer-col">
-            <h5>Help</h5>
-           
-              <a href="#">How to Buy</a>
-              <a href="#">Shipping & Delivery</a>
-              <a href="#">Product Policy</a>
-              <a href="#">How to Return</a>
-            </div>
-            
+            <h5>Help & Guide</h5>
+            <a href="#">Help Center</a>
+            <a href="#">How to Buy</a>
+            <a href="#">Shipping & Delivery</a>
+            <a href="#">Product Policy</a>
+            <a href="#">How to Return</a>
           </div>
 
           <div class="footer-col">
-            <h5>About</h5>
-            <a href="#">Our Story</a>
-            <a href="#">Contact</a>
-            <a href="#">Privacy Policy</a>
+            <h5>Categories</h5>
+            <a href="#">House Plants</a>
+            <a href="#">Potter Plants</a>
+            <a href="#">Seeds</a>
+            <a href="#">Small Plants</a>
+            <a href="#">Accessories</a>
           </div>
 
           <div class="footer-col">
-            <h5>Follow Us</h5>
+            <h5>Social Media</h5>
             <div class="socials">
               <a href="#"><img src="Facebook.svg" alt="Facebook" /></a>
               <a href="#"><img src="Instagram.svg" alt="Instagram" /></a>
               <a href="#"><img src="Twitter.svg" alt="Twitter" /></a>
-              <a href="#"><img src="Linkidin.svg" alt="Linkidin" /></a>
+              <a href="#"><img src="Linkidin.svg" alt="LinkedIn" /></a>
+              <a href="#"><img src="Youtube.svg" alt="YouTube" /></a>
             </div>
           </div>
         </div>
 
         <div class="footer-bottom">
-          <p>© 2025 GreenShop. All rights reserved.</p>
+          <p>© 2025 GreenShop. All Rights Reserved.</p>
         </div>
       </footer>
     </div>
