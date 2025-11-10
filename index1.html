@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Woodendot – Furniture & Cloe Modular System</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        color: #222;
+        background-color: #fff;
+        line-height: 1.5;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      :root {
+        --black: #000;
+        --gray: #666;
+        --light-gray: #f8f8f8;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .header {
+        background: #fff;
+        border-bottom: 1px solid #eee;
+      }
+
+      .header__container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 0;
+      }
+
+      .header__logo {
+        font-size: 24px;
+        font-weight: 600;
+      }
+
+      .header__list {
+        display: flex;
+        gap: 32px;
+        list-style: none;
+      }
+
+      .header__link {
+        color: var(--black);
+        position: relative;
+        transition: 0.3s ease;
+      }
+
+      .header__link:hover {
+        color: var(--gray);
+      }
+
+      .hero {
+        background: url(furniture1.jpg) center/cover no-repeat;
+        padding: 140px 20px;
+        text-align: center;
+      }
+
+      .hero__content {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .hero__title {
+        font-size: 32px;
+        line-height: 1.4;
+        color: var(--black);
+      }
+
+      .hero__button {
+        display: inline-block;
+        margin-top: 24px;
+        padding: 12px 32px;
+        border: 1px solid var(--black);
+        text-transform: uppercase;
+        color: var(--black);
+        transition: all 0.3s ease;
+      }
+
+      .hero__button:hover {
+        background: var(--black);
+        color: #fff;
+      }
+
+      @media (max-width: 768px) {
+        .hero__title {
+          font-size: 22px;
+        }
+
+        .hero__button {
+          padding: 10px 24px;
+        }
+      }
+
+      .features {
+        background: var(--light-gray);
+        padding: 60px 0;
+      }
+
+      .features__container {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+
+      .features__item {
+        flex: 1 1 150px;
+        text-align: center;
+        transition: transform 0.3s ease;
+      }
+
+      .features__item:hover {
+        transform: translateY(-5px);
+      }
+
+      .features__icon {
+        width: 40px;
+        height: 40px;
+        margin-bottom: 10px;
+      }
+
+      .features__text {
+        font-size: 14px;
+        color: var(--gray);
+      }
+
+      .gallery {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        overflow: hidden;
+      }
+
+      .gallery__image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.4s ease;
+      }
+
+      .gallery__image:hover {
+        transform: scale(1.05);
+      }
+
+      @media (max-width: 900px) {
+        .gallery {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 500px) {
+        .gallery {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .cloe {
+        padding: 80px 20px;
+        display: flex;
+        justify-content: center;
+      }
+
+      .cloe__container {
+        max-width: 1200px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        gap: 40px;
+      }
+
+      .cloe__info {
+        animation: fadeInLeft 1.2s ease forwards;
+      }
+
+      .cloe__title {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+      }
+
+      .cloe__subtitle {
+        font-style: italic;
+        color: #7a7a7a;
+        margin-bottom: 1rem;
+      }
+
+      .cloe__price {
+        font-weight: 500;
+        margin-bottom: 1rem;
+      }
+
+      .cloe__text {
+        color: #555;
+        margin-bottom: 2rem;
+      }
+
+      .cloe__button {
+        display: inline-block;
+        text-decoration: none;
+        color: #2d2d2d;
+        border: 1px solid #2d2d2d;
+        padding: 10px 25px;
+        border-radius: 25px;
+        transition: all 0.3s ease;
+      }
+
+      .cloe__button:hover {
+        background-color: #2d2d2d;
+        color: #fff;
+        transform: translateY(-3px);
+      }
+
+      .cloe__image-box {
+        overflow: hidden;
+        border-radius: 12px;
+        animation: fadeInRight 1.2s ease forwards;
+      }
+
+      .cloe__image {
+        width: 100%;
+        border-radius: 12px;
+        transition: transform 0.4s ease;
+      }
+
+      .cloe__image:hover {
+        transform: scale(1.03);
+      }
+
+      @media (max-width: 900px) {
+        .cloe__container {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+
+        .cloe__image-box {
+          order: -1;
+        }
+      }
+
+      .footer {
+        padding: 40px 0;
+        text-align: center;
+        background: #fff;
+        border-top: 1px solid #eee;
+      }
+
+      .footer__text {
+        font-size: 14px;
+        color: var(--gray);
+      }
+
+      @keyframes fadeInLeft {
+        from {
+          opacity: 0;
+          transform: translateX(-50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes fadeInRight {
+        from {
+          opacity: 0;
+          transform: translateX(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="header__container container">
+        <div class="header__logo">Woodendot</div>
+        <nav class="header__nav">
+          <ul class="header__list">
+            <li class="header__item">
+              <a href="#" class="header__link">Wooden Furniture</a>
+            </li>
+            <li class="header__item">
+              <a href="#" class="header__link">About</a>
+            </li>
+            <li class="header__item">
+              <a href="#" class="header__link">Stories</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero__content">
+        <h1 class="hero__title">
+          Furniture designed to live in harmony, creating distinctive and
+          timeless spaces
+        </h1>
+        <a href="#" class="hero__button">Discover now</a>
+      </div>
+    </section>
+
+    <section class="features">
+      <div class="features__container container">
+        <div class="features__item">
+          <img src="IMAGE.svg" alt="" class="features__icon" />
+          <p class="features__text">Free Shipping</p>
+        </div>
+        <div class="features__item">
+          <img src="IMAGE-2.svg" alt="" class="features__icon" />
+          <p class="features__text">Awarded Product Design</p>
+        </div>
+        <div class="features__item">
+          <img src="IMAGE-3.svg" alt="" class="features__icon" />
+          <p class="features__text">Ecofriendly Approach</p>
+        </div>
+        <div class="features__item">
+          <img src="IMAGE-4.svg" alt="" class="features__icon" />
+          <p class="features__text">Crafted in Spain</p>
+        </div>
+        <div class="features__item">
+          <p class="features__text">4.8 Star Reviews</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery">
+      <img src="Frame.jpg" alt="Living room" class="gallery__image" />
+      <img src="Frame-2.jpg" alt="Desk" class="gallery__image" />
+      <img src="Frame-3.jpg" alt="Dining room" class="gallery__image" />
+      <img src="Frame-4.jpg" alt="Bedroom" class="gallery__image" />
+    </section>
+
+    <section class="cloe">
+      <div class="cloe__container">
+        <div class="cloe__info">
+          <h2 class="cloe__title">Cloe</h2>
+          <p class="cloe__subtitle">Modular Storage System</p>
+          <p class="cloe__price">From $1,176</p>
+          <p class="cloe__text">
+            An <em>expansive</em> way to furnish your space exactly how you need
+            it and like it. Transform it in exactly what you need like a
+            bookshelf, tv stand or shoe rack — you pick.
+          </p>
+          <a href="#" class="cloe__button">Shop now</a>
+        </div>
+
+        <div class="cloe__image-box">
+          <img src="IMAGE.jpg" alt="Cloe Modular System" class="cloe__image" />
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer__container container">
+        <p class="footer__text">© 2025 Woodendot. All rights reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>
